@@ -226,7 +226,7 @@ function App() {
               </p>
               <div className="flex flex-wrap gap-2">
                 <Badge variant="secondary">Continuous Learning</Badge>
-                <Badge variant="secondary">3 Projects Completed</Badge>
+                <Badge variant="secondary">4 Projects Completed</Badge>
                 <Badge variant="secondary">Thinking Client Satisfaction</Badge>
               </div>
             </div>
