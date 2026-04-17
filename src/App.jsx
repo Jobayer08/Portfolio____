@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button.jsx';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card.jsx';
 import { Badge } from '@/components/ui/badge.jsx';
-import { Mail, Phone, MapPin, Github, Linkedin, ExternalLink, Menu, X } from 'lucide-react';
+import { Mail, Phone, MapPin, Github, Linkedin, ExternalLink, Menu, X, Code2, Award, Rocket, Users, Sparkles, ArrowRight, Star, Briefcase, GraduationCap, Heart, Terminal, Cpu, Database, Globe, Server, Shield, Zap, Coffee } from 'lucide-react';
 import './App.css';
 
 import profilePhoto from './assets/my-photo.jpg';
@@ -12,10 +12,25 @@ import project3 from './assets/project3.jpg';
 import project4 from './assets/project4.jpg';
 import project5 from './assets/project5.png';
 
-
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
+  const [hoveredProject, setHoveredProject] = useState(null);
+  const [typedText, setTypedText] = useState('');
+  const fullText = "Computer Science & Engineering Student | Aspiring Data Scientist | Tech Enthusiast";
+
+  useEffect(() => {
+    let i = 0;
+    const typingInterval = setInterval(() => {
+      if (i < fullText.length) {
+        setTypedText(fullText.slice(0, i + 1));
+        i++;
+      } else {
+        clearInterval(typingInterval);
+      }
+    }, 50);
+    return () => clearInterval(typingInterval);
+  }, []);
 
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId);
@@ -61,90 +76,109 @@ function App() {
   const skills = ["HTML/CSS", "C", "C++", "Java", "Python", "Numpy", "Pandas", "Php", "C#","Flutter","FastApi"];
 
   const projects = [
-
     {
       id:1,
-  title: "Student Group Prediction System",
-  description: "A full-stack machine learning web application that predicts a student's academic group (Science, Commerce, Arts) using real-world educational data. The system includes user authentication, a smart input form, and real-time prediction powered by a trained ML model.",
-  image: project5,
-  technologies: [
-    "Machine Learning (Scikit-learn, Random Forest)",
-    "FastAPI (REST API Development)",
-    "JWT Authentication (Login & Register System)",
-    "React.js Frontend Development",
-    "Data Preprocessing & Feature Engineering",
-    "Deployment (Vercel + Render)",
-    "PostgreSQL Database Integration"
-  ],
-  liveUrl: "https://student-group-prediction.vercel.app/",
-  githubUrl: "https://github.com/Jobayer08/fastapi-ml-project"
-},
+      title: "Student Group Prediction System",
+      description: "A full-stack machine learning web application that predicts a student's academic group (Science, Commerce, Arts) using real-world educational data. The system includes user authentication, a smart input form, and real-time prediction powered by a trained ML model.",
+      image: project5,
+      icon: <Brain className="w-6 h-6" />,
+      technologies: [
+        "Machine Learning (Scikit-learn, Random Forest)",
+        "FastAPI (REST API Development)",
+        "JWT Authentication (Login & Register System)",
+        "React.js Frontend Development",
+        "Data Preprocessing & Feature Engineering",
+        "Deployment (Vercel + Render)",
+        "PostgreSQL Database Integration"
+      ],
+      liveUrl: "https://student-group-prediction.vercel.app/",
+      githubUrl: "https://github.com/Jobayer08/fastapi-ml-project"
+    },
     {
       id: 2,
       title: "Alcohol-Detector",
-      description: "This Arduino-based project aims to prevent road accidents by detecting alcohol consumption in bike riders before starting the vehicle. ",
+      description: "This Arduino-based project aims to prevent road accidents by detecting alcohol consumption in bike riders before starting the vehicle.",
       image: project1,
+      icon: <Shield className="w-6 h-6" />,
       technologies: ["Embedded Systems Programming", "IoT (Internet of Things)", "Sensor Integration", "LCD Display Communication (I2C protocol)", "Motor Control using Relay", "Power Management"],
+      liveUrl: null,
       githubUrl: "https://github.com/Jobayer08/Alcohol-Detector"
     },
     {
       id: 3,
       title: "PSTU Alumni Network",
-      description: "PSTU Alumni Network is a web-based platform designed to connect former students of Patuakhali Science and Technology Univerity with each other and with current students.",
+      description: "PSTU Alumni Network is a web-based platform designed to connect former students of Patuakhali Science and Technology University with each other and with current students.",
       image: project2,
+      icon: <Users className="w-6 h-6" />,
       technologies: ["HTML5", "CSS3", "JavaScript (basic)","PHP","MySQL","FPDF Library"],
       liveUrl: "https://alumninetworkpstu.free.nf",
       githubUrl: "https://github.com/Jobayer08/Alumni-Network-PSTU"
     },
     {
       id: 4,
-      title: "Paint Industry Order Processing and Management System ",
-      description: "This project is a web-based application developed using ASP.NET MVC (C#) and SQL Server, designed to manage a paint manufacturing company's daily operations. ",
+      title: "Paint Industry Order Processing and Management System",
+      description: "This project is a web-based application developed using ASP.NET MVC (C#) and SQL Server, designed to manage a paint manufacturing company's daily operations.",
       image: project3,
+      icon: <Database className="w-6 h-6" />,
       technologies: ["HTML, CSS, Bootstrap", "ASP.NET MVC (C#)", "SQL Server","Entity Framework (Database First Approach)","Crystal Reports"],
+      liveUrl: null,
       githubUrl: "https://github.com/Jobayer08/System-Analysis-Project"
     },
     {
       id: 5,
       title: "HelpMate",
-      description: " Find Blood Donors & Medicine: A simple, efficient way to request blood or search for medicines nearby ",
+      description: "Find Blood Donors & Medicine: A simple, efficient way to request blood or search for medicines nearby",
       image: project4,
+      icon: <Heart className="w-6 h-6" />,
       technologies: ["Flutter (Dart)", "Firebase", "Cloud Firestore (NoSQL Database)","Python,Pandas,NumPy,Scikit-learn,Jupyter Notebook","FastAPI (Python)"],
+      liveUrl: null,
       githubUrl: "https://github.com/Jobayer08/Help_Mate"
     }
   ];
 
+  const stats = [
+    { icon: <Code2 className="w-6 h-6" />, value: "10+", label: "Technologies" },
+    { icon: <Rocket className="w-6 h-6" />, value: "5+", label: "Projects Completed" },
+    { icon: <Coffee className="w-6 h-6" />, value: "500+", label: "Hours of Coding" },
+    { icon: <Users className="w-6 h-6" />, value: "100%", label: "Client Satisfaction" }
+  ];
+
   return (
-    <div className="min-h-screen bg-background">
+    <div className="app-container">
+      {/* Animated Background */}
+      <div className="animated-bg">
+        <div className="gradient-sphere sphere-1"></div>
+        <div className="gradient-sphere sphere-2"></div>
+        <div className="gradient-sphere sphere-3"></div>
+      </div>
+
       {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 bg-background/80 backdrop-blur-md border-b border-border z-50">
+      <nav className="glass-nav">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
-            <div className="font-bold text-xl text-primary">
-              {personalInfo.name}
+            <div className="logo-wrapper">
+              <div className="logo-glow"></div>
+              <span className="logo-text">{personalInfo.name}</span>
             </div>
             
-            {/* Desktop Navigation */}
             <div className="hidden md:flex space-x-8">
               {['home', 'about', 'skills', 'projects', 'contact'].map((item) => (
                 <button
                   key={item}
                   onClick={() => scrollToSection(item)}
-                  className={`capitalize transition-colors hover:text-primary ${
-                    activeSection === item ? 'text-primary' : 'text-muted-foreground'
-                  }`}
+                  className={`nav-link capitalize ${activeSection === item ? 'active' : ''}`}
                 >
-                  {item}
+                  <span className="nav-link-text">{item}</span>
                 </button>
               ))}
             </div>
 
-            {/* Mobile menu button */}
             <div className="md:hidden">
               <Button
                 variant="ghost"
                 size="sm"
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
+                className="menu-button"
               >
                 {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
               </Button>
@@ -152,17 +186,14 @@ function App() {
           </div>
         </div>
 
-        {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="md:hidden bg-background border-t border-border">
-            <div className="px-2 pt-2 pb-3 space-y-1">
+          <div className="mobile-menu">
+            <div className="mobile-menu-inner">
               {['home', 'about', 'skills', 'projects', 'contact'].map((item) => (
                 <button
                   key={item}
                   onClick={() => scrollToSection(item)}
-                  className={`block w-full text-left px-3 py-2 rounded-md text-base font-medium transition-colors hover:bg-accent capitalize ${
-                    activeSection === item ? 'text-primary bg-accent' : 'text-muted-foreground'
-                  }`}
+                  className={`mobile-nav-link ${activeSection === item ? 'active' : ''}`}
                 >
                   {item}
                 </button>
@@ -173,50 +204,58 @@ function App() {
       </nav>
 
       {/* Hero Section */}
-      <section id="home" className="pt-16 min-h-screen flex items-center">
+      <section id="home" className="hero-section">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div className="space-y-8">
-              <div className="space-y-4">
-                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground">
-                  Hi, I'm <span className="text-primary">{personalInfo.name}</span>
-                </h1>
-                <p className="text-xl sm:text-2xl text-muted-foreground">
-                  {personalInfo.title}
-                </p>
-                <p className="text-lg text-muted-foreground max-w-2xl">
-                  With a strong interest in data science, I have completed foundational courses in Python and NumPy.
-                </p>
+          <div className="hero-grid">
+            <div className="hero-content">
+              <div className="hero-badge">
+                <Sparkles className="w-4 h-4" />
+                <span>Welcome to my portfolio</span>
               </div>
-              <div className="flex flex-col sm:flex-row gap-4">
+              <h1 className="hero-title">
+                Hi, I'm <span className="gradient-text">{personalInfo.name}</span>
+              </h1>
+              <div className="hero-typing">
+                <p className="typing-text">{typedText}</p>
+                <span className="cursor-blink">|</span>
+              </div>
+              <p className="hero-description">
+                {personalInfo.title}
+              </p>
+              <div className="hero-buttons">
                 <Button 
                   size="lg" 
                   onClick={() => scrollToSection('projects')}
-                  className="text-lg px-8 py-3"
+                  className="btn-primary"
                 >
                   View My Work
+                  <ArrowRight className="w-4 h-4 ml-2" />
                 </Button>
                 <Button 
                   variant="outline" 
                   size="lg"
                   onClick={() => scrollToSection('contact')}
-                  className="text-lg px-8 py-3"
+                  className="btn-secondary"
                 >
                   Get In Touch
                 </Button>
               </div>
             </div>
-            <div className="flex justify-center lg:justify-end">
-              <div className="relative">
-                <div className="w-80 h-80 rounded-full overflow-hidden border-4 border-primary shadow-2xl">
-                  <img 
-                    src={profilePhoto} 
-                    alt="Profile" 
-                    className="w-full h-full object-cover"
-                  />
+            <div className="hero-image-wrapper">
+              <div className="hero-image-container">
+                <div className="image-glow"></div>
+                <img 
+                  src={profilePhoto} 
+                  alt="Profile" 
+                  className="hero-image"
+                />
+                <div className="floating-badge badge-1">
+                  <Code2 className="w-4 h-4" />
+                  <span>Full Stack Dev</span>
                 </div>
-                <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-primary rounded-full flex items-center justify-center">
-                  <span className="text-primary-foreground text-2xl">👋</span>
+                <div className="floating-badge badge-2">
+                  <Brain className="w-4 h-4" />
+                  <span>ML Enthusiast</span>
                 </div>
               </div>
             </div>
@@ -224,64 +263,88 @@ function App() {
         </div>
       </section>
 
-      {/* About Section */}
-      <section id="about" className="py-20 bg-muted/50">
+      {/* Stats Section */}
+      <section className="stats-section">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
-              About Me
+          <div className="stats-grid">
+            {stats.map((stat, index) => (
+              <div key={index} className="stat-card">
+                <div className="stat-icon">{stat.icon}</div>
+                <div className="stat-value">{stat.value}</div>
+                <div className="stat-label">{stat.label}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* About Section */}
+      <section id="about" className="about-section">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="section-header">
+            <h2 className="section-title">
+              <span className="title-gradient">About Me</span>
             </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Learn more about my journey and experience
-            </p>
+            <p className="section-subtitle">Learn more about my journey and experience</p>
           </div>
           
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div className="space-y-6">
-              <p className="text-lg text-muted-foreground leading-relaxed">
-                I am continuously building my skills and knowledge to become a successful data scientist in the future.
-              </p>
-              <p className="text-lg text-muted-foreground leading-relaxed">
-                I work with various technologies and I'm always eager to learn new things. The foundation of my work is understanding user needs and providing solutions accordingly.
-              </p>
-              <div className="flex flex-wrap gap-2">
-                <Badge variant="secondary">Continuous Learning</Badge>
-                <Badge variant="secondary">4 Projects Completed</Badge>
-                <Badge variant="secondary">Thinking Client Satisfaction</Badge>
+          <div className="about-grid">
+            <div className="about-content">
+              <div className="about-text">
+                <p>
+                  I am continuously building my skills and knowledge to become a successful data scientist in the future.
+                </p>
+                <p>
+                  I work with various technologies and I'm always eager to learn new things. The foundation of my work is understanding user needs and providing solutions accordingly.
+                </p>
+              </div>
+              <div className="about-badges">
+                <Badge variant="secondary" className="about-badge">
+                  <GraduationCap className="w-4 h-4 mr-1" />
+                  Continuous Learning
+                </Badge>
+                <Badge variant="secondary" className="about-badge">
+                  <Briefcase className="w-4 h-4 mr-1" />
+                  5+ Projects Completed
+                </Badge>
+                <Badge variant="secondary" className="about-badge">
+                  <Heart className="w-4 h-4 mr-1" />
+                  Client Satisfaction
+                </Badge>
               </div>
             </div>
-            <div className="space-y-4">
-              <Card>
+            <div className="about-cards">
+              <Card className="info-card">
                 <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
+                  <CardTitle className="info-card-title">
                     <Mail className="w-5 h-5 text-primary" />
                     Email
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-muted-foreground">{personalInfo.email}</p>
+                  <p className="info-card-text">{personalInfo.email}</p>
                 </CardContent>
               </Card>
-              <Card>
+              <Card className="info-card">
                 <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
+                  <CardTitle className="info-card-title">
                     <Phone className="w-5 h-5 text-primary" />
                     Phone
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-muted-foreground">{personalInfo.phone}</p>
+                  <p className="info-card-text">{personalInfo.phone}</p>
                 </CardContent>
               </Card>
-              <Card>
+              <Card className="info-card">
                 <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
+                  <CardTitle className="info-card-title">
                     <MapPin className="w-5 h-5 text-primary" />
                     Location
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-muted-foreground">{personalInfo.location}</p>
+                  <p className="info-card-text">{personalInfo.location}</p>
                 </CardContent>
               </Card>
             </div>
@@ -290,22 +353,23 @@ function App() {
       </section>
 
       {/* Skills Section */}
-      <section id="skills" className="py-20">
+      <section id="skills" className="skills-section">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
-              My Skills
+          <div className="section-header">
+            <h2 className="section-title">
+              <span className="title-gradient">My Skills</span>
             </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Technologies and tools I work with
-            </p>
+            <p className="section-subtitle">Technologies and tools I work with</p>
           </div>
           
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+          <div className="skills-grid">
             {skills.map((skill, index) => (
-              <Card key={index} className="text-center hover:shadow-lg transition-shadow cursor-pointer">
-                <CardContent className="p-6">
-                  <p className="font-medium text-foreground">{skill}</p>
+              <Card key={index} className="skill-card">
+                <CardContent className="skill-card-content">
+                  <div className="skill-icon">
+                    {index % 2 === 0 ? <Code2 className="w-5 h-5" /> : <Cpu className="w-5 h-5" />}
+                  </div>
+                  <p className="skill-name">{skill}</p>
                 </CardContent>
               </Card>
             ))}
@@ -314,47 +378,58 @@ function App() {
       </section>
 
       {/* Projects Section */}
-      <section id="projects" className="py-20 bg-muted/50">
+      <section id="projects" className="projects-section">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
-              My Projects
+          <div className="section-header">
+            <h2 className="section-title">
+              <span className="title-gradient">My Projects</span>
             </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Some examples of my recent work
-            </p>
+            <p className="section-subtitle">Some examples of my recent work</p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="projects-grid">
             {projects.map((project) => (
-              <Card key={project.id} className="overflow-hidden hover:shadow-lg transition-shadow">
-                <div className="aspect-video overflow-hidden">
+              <Card 
+                key={project.id} 
+                className="project-card"
+                onMouseEnter={() => setHoveredProject(project.id)}
+                onMouseLeave={() => setHoveredProject(null)}
+              >
+                <div className="project-image-wrapper">
                   <img 
                     src={project.image} 
                     alt={project.title}
-                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                    className="project-image"
                   />
+                  <div className="project-overlay">
+                    <div className="project-icon">{project.icon}</div>
+                  </div>
                 </div>
                 <CardHeader>
-                  <CardTitle className="text-xl">{project.title}</CardTitle>
-                  <CardDescription className="text-base">
+                  <CardTitle className="project-title">{project.title}</CardTitle>
+                  <CardDescription className="project-description">
                     {project.description}
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {project.technologies.map((tech, index) => (
-                      <Badge key={index} variant="outline">{tech}</Badge>
+                  <div className="project-techs">
+                    {project.technologies.slice(0, 4).map((tech, index) => (
+                      <Badge key={index} variant="outline" className="tech-badge">{tech}</Badge>
                     ))}
+                    {project.technologies.length > 4 && (
+                      <Badge variant="outline" className="tech-badge">+{project.technologies.length - 4}</Badge>
+                    )}
                   </div>
-                  <div className="flex gap-2">
-                    <Button size="sm" asChild>
-                      <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
-                        <ExternalLink className="w-4 h-4 mr-2" />
-                        Live Demo
-                      </a>
-                    </Button>
-                    <Button size="sm" variant="outline" asChild>
+                  <div className="project-links">
+                    {project.liveUrl && (
+                      <Button size="sm" asChild className="project-link-btn">
+                        <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
+                          <ExternalLink className="w-4 h-4 mr-2" />
+                          Live Demo
+                        </a>
+                      </Button>
+                    )}
+                    <Button size="sm" variant="outline" asChild className="project-link-btn">
                       <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
                         <Github className="w-4 h-4 mr-2" />
                         Code
@@ -369,96 +444,123 @@ function App() {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-20">
+      <section id="contact" className="contact-section">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
-              Get In Touch
+          <div className="section-header">
+            <h2 className="section-title">
+              <span className="title-gradient">Get In Touch</span>
             </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Want to work together? I'm always open to discussing new opportunities.
-            </p>
+            <p className="section-subtitle">Want to work together? I'm always open to discussing new opportunities.</p>
           </div>
           
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-  <div className="space-y-8">
-    <div className="flex flex-col gap-4">
-      {/* Email Section */}
-      <div className="flex items-center gap-4">
-        <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center">
-          <Mail className="w-6 h-6 text-primary-foreground" />
-        </div>
-        <div>
-          <p className="font-medium text-foreground">Email</p>
-          <p className="text-muted-foreground">{personalInfo.email}</p>
-        </div>
-      </div>
+          <div className="contact-grid">
+            <div className="contact-info">
+              <div className="contact-card">
+                <div className="contact-icon-wrapper">
+                  <Mail className="w-6 h-6" />
+                </div>
+                <div>
+                  <p className="contact-label">Email</p>
+                  <p className="contact-value">{personalInfo.email}</p>
+                </div>
+              </div>
+              <div className="contact-card">
+                <div className="contact-icon-wrapper">
+                  <Phone className="w-6 h-6" />
+                </div>
+                <div>
+                  <p className="contact-label">Phone</p>
+                  <p className="contact-value">{personalInfo.phone}</p>
+                </div>
+              </div>
+              <div className="contact-card">
+                <div className="contact-icon-wrapper">
+                  <MapPin className="w-6 h-6" />
+                </div>
+                <div>
+                  <p className="contact-label">Location</p>
+                  <p className="contact-value">{personalInfo.location}</p>
+                </div>
+              </div>
+              <div className="contact-social">
+                <Button asChild className="social-btn">
+                  <a href={personalInfo.linkedin} target="_blank" rel="noopener noreferrer">
+                    <Linkedin className="w-4 h-4 mr-2" />
+                    LinkedIn
+                  </a>
+                </Button>
+                <Button asChild className="social-btn">
+                  <a href={personalInfo.github} target="_blank" rel="noopener noreferrer">
+                    <Github className="w-4 h-4 mr-2" />
+                    GitHub
+                  </a>
+                </Button>
+              </div>
+            </div>
 
-      {/* Phone Section */}
-      <div className="flex items-center gap-4">
-        <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center">
-          <Phone className="w-6 h-6 text-primary-foreground" />
-        </div>
-        <div>
-          <p className="font-medium text-foreground">Phone</p>
-          <p className="text-muted-foreground">{personalInfo.phone}</p>
-        </div>
-      </div>
-
-      {/* LinkedIn Button */}
-      <div>
-        <Button size="sm" asChild>
-          <a href={personalInfo.linkedin} target="_blank" rel="noopener noreferrer" className="flex items-center">
-            <Linkedin className="w-4 h-4 mr-2" />
-            LinkedIn
-          </a>
-        </Button>
-      </div>
-    </div>
-  </div>
-
-
-            <Card>
+            <Card className="contact-form-card">
               <CardHeader>
-                <CardTitle>Send Message</CardTitle>
-                <CardDescription>Tell me about your project</CardDescription>
+                <CardTitle className="form-title">Send Message</CardTitle>
+                <CardDescription className="form-description">Tell me about your project</CardDescription>
               </CardHeader>
               <CardContent>
                 <form 
-                  className="space-y-4" 
+                  className="contact-form" 
                   action="https://formspree.io/f/movwyjon" 
                   method="POST"
                 >
-                  <div>
-                    <label className="block text-sm font-medium text-foreground mb-2">Name</label>
-                    <input name="name" type="text" required className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary bg-background" placeholder="Your name" />
+                  <div className="form-group">
+                    <label className="form-label">Name</label>
+                    <input 
+                      name="name" 
+                      type="text" 
+                      required 
+                      className="form-input" 
+                      placeholder="Your name" 
+                    />
                   </div>
-                  <div>
-                    <label className="block text-sm font-medium text-foreground mb-2">Email</label>
-                    <input name="email" type="email" required className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary bg-background" placeholder="Your email" />
+                  <div className="form-group">
+                    <label className="form-label">Email</label>
+                    <input 
+                      name="email" 
+                      type="email" 
+                      required 
+                      className="form-input" 
+                      placeholder="Your email" 
+                    />
                   </div>
-                  <div>
-                    <label className="block text-sm font-medium text-foreground mb-2">Subject</label>
-                    <input name="subject" type="text" className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary bg-background" placeholder="Message subject" />
+                  <div className="form-group">
+                    <label className="form-label">Subject</label>
+                    <input 
+                      name="subject" 
+                      type="text" 
+                      className="form-input" 
+                      placeholder="Message subject" 
+                    />
                   </div>
-                  <div>
-                    <label className="block text-sm font-medium text-foreground mb-2">Message</label>
-                    <textarea name="message" rows={4} required className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary bg-background" placeholder="Write your message..."></textarea>
+                  <div className="form-group">
+                    <label className="form-label">Message</label>
+                    <textarea 
+                      name="message" 
+                      rows={4} 
+                      required 
+                      className="form-textarea" 
+                      placeholder="Write your message..."
+                    ></textarea>
                   </div>
-                  <Button type="submit" className="w-full">Send Message</Button>
+                  <Button type="submit" className="submit-btn">Send Message</Button>
                 </form>
               </CardContent>
             </Card>
           </div>
         </div>
-        
       </section>
 
       {/* Footer */}
-      <footer className="bg-muted py-8">
+      <footer className="footer">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <p className="text-muted-foreground">
+          <div className="footer-content">
+            <p className="footer-text">
               © 2025 {personalInfo.name}. All rights reserved.
             </p>
           </div>
@@ -470,3 +572,11 @@ function App() {
 
 export default App;
 
+// Missing Brain component import
+const Brain = ({ className }) => (
+  <svg className={className} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M12 4a4 4 0 0 1 3.5 2.2 4 4 0 0 1 3 1.8 4 4 0 0 1 0 6 4 4 0 0 1-3 1.8 4 4 0 0 1-3.5 2.2 4 4 0 0 1-3.5-2.2 4 4 0 0 1-3-1.8 4 4 0 0 1 0-6 4 4 0 0 1 3-1.8A4 4 0 0 1 12 4z"/>
+    <path d="M12 8v8"/>
+    <path d="M8 12h8"/>
+  </svg>
+);
