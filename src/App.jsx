@@ -187,6 +187,7 @@ function App() {
               <button
                 onClick={() => setIsDark(!isDark)}
                 className="theme-toggle"
+                aria-label="Toggle theme"
               >
                 {isDark ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
               </button>
