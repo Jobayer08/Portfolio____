@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button.jsx';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card.jsx';
 import { Badge } from '@/components/ui/badge.jsx';
-import { Mail, Phone, MapPin, Github, Linkedin, ExternalLink, Menu, X, Code2, Award, Rocket, Users, Sparkles, ArrowRight, Star, Briefcase, GraduationCap, Heart, Terminal, Cpu, Database, Globe, Server, Shield, Zap, Coffee } from 'lucide-react';
+import { Mail, Phone, MapPin, Github, Linkedin, ExternalLink, Menu, X, Code2, Award, Rocket, Users, Sparkles, ArrowRight, Star, Briefcase, GraduationCap, Heart, Terminal, Cpu, Database, Globe, Server, Shield, Zap, Coffee, Moon, Sun } from 'lucide-react';
 import './App.css';
 
 import profilePhoto from './assets/my-photo.jpg';
@@ -17,6 +17,7 @@ function App() {
   const [activeSection, setActiveSection] = useState('home');
   const [hoveredProject, setHoveredProject] = useState(null);
   const [typedText, setTypedText] = useState('');
+  const [isDark, setIsDark] = useState(true);
   const fullText = "Computer Science & Engineering Student | Aspiring Data Scientist | Tech Enthusiast";
 
   useEffect(() => {
@@ -31,6 +32,14 @@ function App() {
     }, 50);
     return () => clearInterval(typingInterval);
   }, []);
+
+  useEffect(() => {
+    if (isDark) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  }, [isDark]);
 
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId);
@@ -150,6 +159,7 @@ function App() {
         <div className="gradient-sphere sphere-1"></div>
         <div className="gradient-sphere sphere-2"></div>
         <div className="gradient-sphere sphere-3"></div>
+        <div className="gradient-sphere sphere-4"></div>
       </div>
 
       {/* Navigation */}
@@ -173,15 +183,24 @@ function App() {
               ))}
             </div>
 
-            <div className="md:hidden">
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className="menu-button"
+            <div className="flex items-center gap-4">
+              <button
+                onClick={() => setIsDark(!isDark)}
+                className="theme-toggle"
               >
-                {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
-              </Button>
+                {isDark ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+              </button>
+              
+              <div className="md:hidden">
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => setIsMenuOpen(!isMenuOpen)}
+                  className="menu-button"
+                >
+                  {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
+                </Button>
+              </div>
             </div>
           </div>
         </div>
