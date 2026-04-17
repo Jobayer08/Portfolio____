@@ -76,6 +76,7 @@ function App() {
     "Deployment (Vercel + Render)",
     "PostgreSQL Database Integration"
   ],
+  liveUrl: "https://student-group-prediction.vercel.app/",
   githubUrl: "https://github.com/Jobayer08/fastapi-ml-project"
 },
     {
