@@ -10,6 +10,8 @@ import project1 from './assets/project1.jpg';
 import project2 from './assets/project2.jpg';
 import project3 from './assets/project3.jpg';
 import project4 from './assets/project4.jpg';
+import project5 from './assets/project5.jpg';
+
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -56,11 +58,28 @@ function App() {
     linkedin: "https://www.linkedin.com/in/abdul-jobayer-50262b29a/"
   };
 
-  const skills = ["HTML/CSS", "C", "C++", "Java", "Python", "Numpy", "Pandas", "Php", "C#","Flutter"];
+  const skills = ["HTML/CSS", "C", "C++", "Java", "Python", "Numpy", "Pandas", "Php", "C#","Flutter","FastApi"];
 
   const projects = [
+
     {
-      id: 1,
+      id:1,
+  title: "Student Group Prediction System",
+  description: "A full-stack machine learning web application that predicts a student's academic group (Science, Commerce, Arts) using real-world educational data. The system includes user authentication, a smart input form, and real-time prediction powered by a trained ML model.",
+  image: project5,
+  technologies: [
+    "Machine Learning (Scikit-learn, Random Forest)",
+    "FastAPI (REST API Development)",
+    "JWT Authentication (Login & Register System)",
+    "React.js Frontend Development",
+    "Data Preprocessing & Feature Engineering",
+    "Deployment (Vercel + Render)",
+    "PostgreSQL Database Integration"
+  ],
+  githubUrl: "https://github.com/Jobayer08/fastapi-ml-project"
+},
+    {
+      id: 2,
       title: "Alcohol-Detector",
       description: "This Arduino-based project aims to prevent road accidents by detecting alcohol consumption in bike riders before starting the vehicle. ",
       image: project1,
@@ -68,7 +87,7 @@ function App() {
       githubUrl: "https://github.com/Jobayer08/Alcohol-Detector"
     },
     {
-      id: 2,
+      id: 3,
       title: "PSTU Alumni Network",
       description: "PSTU Alumni Network is a web-based platform designed to connect former students of Patuakhali Science and Technology Univerity with each other and with current students.",
       image: project2,
@@ -77,7 +96,7 @@ function App() {
       githubUrl: "https://github.com/Jobayer08/Alumni-Network-PSTU"
     },
     {
-      id: 3,
+      id: 4,
       title: "Paint Industry Order Processing and Management System ",
       description: "This project is a web-based application developed using ASP.NET MVC (C#) and SQL Server, designed to manage a paint manufacturing company's daily operations. ",
       image: project3,
@@ -85,7 +104,7 @@ function App() {
       githubUrl: "https://github.com/Jobayer08/System-Analysis-Project"
     },
     {
-      id: 4,
+      id: 5,
       title: "HelpMate",
       description: " Find Blood Donors & Medicine: A simple, efficient way to request blood or search for medicines nearby ",
       image: project4,
